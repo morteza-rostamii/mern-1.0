@@ -14,7 +14,6 @@ const blogService = {
       console.log(error);
     }
 
-
     return res.status(200).json({
       msg: '/api/blogs',
       blogs: blogs,
