@@ -15,10 +15,13 @@ import * as db from '#root/src/config/db.js'
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const PORT = config.PORT || 4001;
+const api = '/api/1.0';
 const app = express();
+
 
 // routes
 import blogRouter from '#root/src/modules/blog/blog.route.js'
+import { errorMiddleware } from './middlewares/error.middleware.js';
 
 // *** middlewares ***
 //====================
@@ -32,14 +35,24 @@ app.use(cors({
 
 // *** routes ***
 //====================
-app.use('/blogs', blogRouter)
+
+app.use(`${api}/blogs`, blogRouter);
 
 // catch all 
-app.use('*', (req, res) => {
-  return res.status(404).json({
-    meg: 'not found!!'
-  })
-})
+app.use('*', (req, res, next) => {
+
+  const err = new Error(`${req.originalUrl} does not exist!`);
+  err.status = 'fail';
+  err.statusCode = 404;
+
+  // if: pass anything into next() =: express calls for error handling middleware (skip other middlewares)
+  return next(err);
+});
+
+// *** error middleware ***
+//====================
+
+app.use(errorMiddleware);
 
 // *** process ***
 //====================
