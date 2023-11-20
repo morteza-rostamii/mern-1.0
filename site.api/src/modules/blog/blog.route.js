@@ -11,15 +11,15 @@ router
 .route('/')
 .get(blogService.gets)
 
-// Get: /api/blogs/:slug
-router
-.route('/:slug')
-.get(blogService.get)
-
 // Post: /api/blogs
 router
 .route('/')
 .post(blogService.create)
+
+// Get: /api/blogs/:slug
+router
+.route('/:slug')
+.get(blogService.get)
 
 // Put: /api/blogs/:id
 router

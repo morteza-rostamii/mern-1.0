@@ -18,6 +18,11 @@ const PORT = config.PORT || 4001;
 const api = '/api/1.0';
 const app = express();
 
+// *** static files ***
+//====================
+
+//http://localhost:4000/test.txt
+app.use(express.static('public'));
 
 // routes
 import blogRouter from '#root/src/modules/blog/blog.route.js'
@@ -27,7 +32,9 @@ import { errorMiddleware } from './middlewares/error.middleware.js';
 //====================
 
 // parse json
-express.json();
+app.use(express.json());
+// parse formData
+app.use(express.urlencoded({extended: true}));
 
 app.use(cors({
   origin: '*',

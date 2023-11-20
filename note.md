@@ -16,5 +16,22 @@ console.log(res._hasBody)
 console.log(res._header)
 console.log(res.finished)
 
+===
+
+res.download('some.js');
+
+/string_params /:id =: req.params
+
+/key&value =: req.query
+
+=======
+
+# runs on each route with paramter :id /blog/id
+
+router.param("id", (req, res, next, id) => {
+
+  next();
+})
+
 
  -->

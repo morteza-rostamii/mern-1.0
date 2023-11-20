@@ -1,4 +1,4 @@
-import Blog from "./blog.model.js";
+import blogData from "./blog.data.js";
 
 const blogService = {
 
@@ -7,7 +7,7 @@ const blogService = {
     let blogs = [];
 
     try {
-      blogs = await Blog.find();
+      blogs = await blogData.getPaginate(1, 5);
     }catch(error) {
       error.endpoint = req.url;
       return next(error);
@@ -71,7 +71,7 @@ const blogService = {
   // Delete: /api/blogs/:id
   async delete(req, res, next) {
     const {id} = req.body;
-    
+
     try {
     }catch(error) {
       error.endpoint = req.url;
