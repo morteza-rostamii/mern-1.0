@@ -33,5 +33,68 @@ router.param("id", (req, res, next, id) => {
   next();
 })
 
+===================================
+
+# mongoose:
+==
+
+# create
+const user = new User({name: 'ali'})
+
+await user.save()
+.then(() => {//was saved})
+
+--
+
+const user = await User.create({name: 'sara'})
+
+--
+
+# update: 
+user.name = 'al'
+user.save();
+
+--
+
+# options with each field:
+
+type
+required
+lowerCase: true
+upperCase
+type: Date
+default: () => Date.now()
+# does not let setting the prop, without any error
+immutable: true
+min
+max
+
+# only runs if: use: create() or save()
+validate: {
+  validator: v => v % 2 === 0,
+  message: props => `${props.value} is not an even number`
+}
+
+# mongoose methods and middleware add to schema and virtual
+
+# mongoose relationships:
+==
+
+
+=========================================================
+
+{
+  "compilerOptions": {
+    "allowJs": true,
+    "checkJs": true,
+    "strict": true
+  }
+}
+
+====================================================
+
+# web sockets:
+==
+
 
  -->

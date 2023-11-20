@@ -15,7 +15,7 @@ import * as db from '#root/src/config/db.js'
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const PORT = config.PORT || 4001;
-const api = '/api/1.0';
+const api = '/api';
 const app = express();
 
 // *** static files ***

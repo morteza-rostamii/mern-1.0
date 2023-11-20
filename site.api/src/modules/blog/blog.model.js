@@ -2,10 +2,10 @@ import mongoose from 'mongoose'
 
 // Blog
 
-const blogType = {
+const blogOption = {
   id: {
     type: String,
-    required: true,
+    //required: true,
   },
 
   title: {
@@ -15,8 +15,9 @@ const blogType = {
 }
 
 const blogSchema = new mongoose.Schema({
-  id: blogType.id,
-  title: blogType.title,
+  id: blogOption.id,
+  title: blogOption.title,
+  
 })
 
 export default mongoose.model('Blog', blogSchema)

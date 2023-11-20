@@ -5,18 +5,27 @@ const blogData = {
   // queries
   //**************
   
-  // Get: blogs => paginated
+  /** 
+   * Get: blogs => paginated
+   * @param {Number} page
+   * @param {String} limit
+  */
   async getPaginate(page, limit) {
     const blogs = await Blog.find();
     return blogs;
   },
 
   async getByUserPaginate(userId, page, limit) {
-    
   },
 
-  getById(id) {
-
+  /**
+   * 
+   * @param {*} id 
+   * @returns 
+   */
+  async getById(id) {
+    const blog = await Blog.findOne({_id: id});
+    return blog;
   },
 
   getBySlug(slug) {
@@ -26,15 +35,32 @@ const blogData = {
   // create
   //**************
 
-  create(data) {
-
+  /**
+   * 
+   * @param {{title: String}} data
+   */
+  async create(data) {
+    const blog = new Blog(data);
+    await blog.save();
+    return blog;
   },
 
   // update
-  //**************
+  //-------
 
-  findByIdAndUpdate(id) {
+  /**
+   * 
+   * @param {String} id 
+   */
+  async findByIdAndUpdate(id, data) {
+    const blog = await Blog.findOne({ _id: id })
 
+		if (data.title) {
+			blog.title = data.title;
+		}
+
+		await blog.save()
+    return blog;
   },
 
   findBySlugAndUpdate(slug) {
@@ -45,6 +71,7 @@ const blogData = {
   //**************
 
   findByIdAndDelete(id) {
+    //await Post.deleteOne({ _id: req.params.id })
 
   },
 

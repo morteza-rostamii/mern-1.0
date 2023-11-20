@@ -36,8 +36,20 @@ const blogService = {
     return res.status(200).json(response);
   },
 
-  // Post: /api/blogs
+  /**
+   * Post: /api/blogs
+   * @param {*} req 
+   * @param {*} res 
+   * @param {*} next 
+   * @returns 
+   */
   async create(req, res, next) {
+
+    const {
+      title, 
+    } = req.body;
+
+    const blog = await blogData.create({title});
 
     try {
     }catch(error) {
@@ -47,6 +59,7 @@ const blogService = {
 
     const response = {
       msg: req.url,
+      blog: blog,
     };
 
     return res.status(200).json(response);
