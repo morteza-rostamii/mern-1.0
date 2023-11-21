@@ -1,6 +1,7 @@
 
 import express from 'express'
 import cors from 'cors'
+import main from './modules/sockets/index.js'
 
 import { fileURLToPath } from 'url';
 import * as path from 'path'
